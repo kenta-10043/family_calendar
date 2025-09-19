@@ -1,0 +1,6 @@
+*
+!.gitignore
+!.others/
+!.others/**
+!.user_images/
+!.user_images/**
