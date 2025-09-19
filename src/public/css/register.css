@@ -1,0 +1,29 @@
+/* メイン */
+.register__form{
+    max-width: 1440px;
+    width: 100%;
+    text-align: center;
+}
+
+
+/* ユーザーイメージ */
+.preview__image {
+    object-fit: cover;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    display: none;
+}
+
+.user__image{
+    object-fit: cover;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+
+/* エラー表示 */
+.form__error{
+    color: red;
+}
+
