@@ -29,6 +29,7 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'user_image' => ['nullable', 'image','mimes:png,jpeg'],
         ];
         $messages = [
             'name.required' => '名前を入力してください',
@@ -42,15 +43,27 @@ class CreateNewUser implements CreatesNewUsers
             'password.required' => 'パスワードを入力してください',
             'password.string' => 'パスワードは文字列で入力してください',
             'password.min' => 'パスワードは8文字以上で入力してください',
-            'password.confirmed' => 'パスワードと一致しません'
+            'password.confirmed' => 'パスワードと一致しません',
+            'user_image.mimes' => '「.png」または「.jpeg」形式でアップロードしてください',
+            'user_image.image' => '画像ファイルをアップロードしてください',
         ];
 
         Validator::make($input, $rules, $messages)->validate();
+
+        $imagePath='user_images/default.png';
+
+        if(!empty($input['user_image']) && $input['user_image'] instanceof \Illuminate\Http\UploadedFile){
+          $imagePath=$input['user_image']->store('user_images','public');
+        }
+        // instanceof \Illuminate\Http\UploadedFileは画像ファイルのみ認める言う意味
+
+
 
         return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'user_image' =>$imagePath,
         ]);
     }
 }

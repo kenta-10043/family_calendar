@@ -1,8 +1,37 @@
 /* メイン */
+.main__content{
+width: 100%;
+}
+
+.register-form__title{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
 .register__form{
     max-width: 1440px;
-    width: 100%;
+    width: 1000px;
+    margin: 0 auto;
     text-align: center;
+}
+
+.register__items{
+    text-align: justify;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.register__inner{
+    margin-bottom: 40px;
+}
+
+.item-label{
+    font-weight: bold;
+}
+
+.input__form{
+    width: 50%;
+    margin-right: 0;
 }
 
 
@@ -20,6 +49,17 @@
     width: 75px;
     height: 75px;
     border-radius: 50%;
+}
+
+/* 遷移系 */
+.register__button{
+    width: 750px;
+}
+
+.login__link{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
 }
 
 /* エラー表示 */

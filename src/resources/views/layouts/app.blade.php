@@ -20,33 +20,30 @@
 <body>
     <header class="main-header">
         <nav class="header__nav">
-            {{-- @if (Auth::check()) --}}
+            @if (Auth::check())
                 <a class="title-name" href="{{ route('schedule.calendar') }}">Family Calendar</a>
-                {{-- <div class="link__button1">
-                    <a class="button__chat" href="{{}}">chat</a>
-                    <a class="button__thread" href="{{  }}">thread</a>
+                <div class="link__button1">
+                    <a class="link__chat" href="#">chat</a>
+                    <a class="link__thread" href="#">thread</a>
                 </div>
                 <div class="link__button2">
-                    <a class="button__diary" href="{{ route('sell.index') }}">diary</a>
+                    <a class="link__diary" href="#">diary</a>
                     <form action="/logout" method="post">
                         @csrf
-                        <button class="button__logout">ログアウト</button>
+                        <button class="button__logout">logout</button>
                     </form>
                 </div>
-            @else--}}
-                {{-- <a class="title-name" href="{{ route('schedule.calendar') }}">Family Calendar</a>
+            @else
+                <a class="title-name" href="{{ route('schedule.calendar') }}">Family Calendar</a>
                 <div class="link__button1">
-                    <a class="button__chat" href="{{ route('profile.index') }}">chat</a>
-                    <a class="button__thread" href="{{ route('profile.index') }}">thread</a>
-                </div> --}}
-                <div class="link__button2">
-                    {{-- <a class="button__diary" href="{{ route('sell.index') }}">diary</a> --}}
-                    <form action="/login" method="post">
-                        @csrf
-                        <button class="button__login">login</button>
-                    </form>
+                    <a class="link__chat" href="#">chat</a>
+                    <a class="link__thread" href="#">thread</a>
                 </div>
-            {{-- @endif --}}
+                <div class="link__button2">
+                    <a class="link__diary" href="#">diary</a>
+                    <a class="link__login" href="/login">login</a>
+                </div>
+            @endif
         </nav>
     </header>
     <div class="container">
@@ -56,7 +53,7 @@
             <div class="content__diary">diary</div>
             <div class="content__thread">thread</div>
         </div>
-        @yield('content')
     </div>
+    @yield('content')
 </body>
 </html>

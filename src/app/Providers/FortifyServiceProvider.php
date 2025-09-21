@@ -15,6 +15,14 @@ use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Fortify;
 use App\Http\Requests\LoginRequest;
 use Laravel\Fortify\Http\Requests\LoginRequest as FortifyLoginRequest;
+use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
+use App\Http\Responses\RegisterResponse;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+use App\Http\Responses\LoginResponse;
+use Laravel\Fortify\Contracts\VerifyEmailViewResponse as VerifyEmailViewResponseContract;
+use App\Http\Responses\VerifyEmailViewResponse;
+use Laravel\Fortify\Contracts\VerifyEmailResponse as VerifyEmailResponseContract;
+use App\Http\Responses\VerifyEmailResponse;
 
 
 class FortifyServiceProvider extends ServiceProvider
@@ -24,7 +32,16 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(RegisterResponseContract::class, RegisterResponse::class);
+        $this->app->singleton(LoginResponseContract::class, LoginResponse::class);
+        $this->app->singleton(
+            VerifyEmailViewResponseContract::class,
+            VerifyEmailViewResponse::class
+        );
+        $this->app->singleton(
+            VerifyEmailResponseContract::class,
+            VerifyEmailResponse::class
+        );
     }
 
     /**
@@ -48,6 +65,7 @@ class FortifyServiceProvider extends ServiceProvider
          return Limit::perMinute(10)->by($email . $request->ip());
     });
         app()->bind(FortifyLoginRequest::class, LoginRequest::class);
+
 
     }
 }
