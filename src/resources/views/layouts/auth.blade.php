@@ -16,23 +16,22 @@
 
 <body>
     @if (Auth::check() && Auth::user()->hasVerifiedEmail())
-<header class="main-header">
-<a class="title-name" href="{{ route('schedule.calendar') }}">Family Calendar</a>
- </header>
-
- @elseif(Auth::check())
-    <header class="main-header">
-        <a class="title-name" href="/email/verify">
-            Family Calendar
-        </a>
-    </header>
-
-@else
-    <header class="main-header">
-       <a class="title-name" href="/login">Family Calendar</a>
-    </header>
-@endif
+        <header class="main-header">
+            <a class="title-name" href="{{ route('schedule.calendar') }}">Family Calendar</a>
+        </header>
+    @elseif(Auth::check())
+        <header class="main-header">
+            <a class="title-name" href="/email/verify">
+                Family Calendar
+            </a>
+        </header>
+    @else
+        <header class="main-header">
+            <a class="title-name" href="/login">Family Calendar</a>
+        </header>
+    @endif
     @yield('content')
 
 </body>
+
 </html>

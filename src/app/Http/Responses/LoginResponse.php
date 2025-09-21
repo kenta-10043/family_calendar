@@ -14,7 +14,6 @@ class LoginResponse implements LoginResponseContract
         if (! $user->hasVerifiedEmail()) {
             return redirect('/email/verify')
                 ->withErrors(['email' => 'メール認証が完了していません。']);
-
         }
         return redirect('/');
     }
