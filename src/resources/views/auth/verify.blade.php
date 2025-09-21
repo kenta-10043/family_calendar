@@ -1,13 +1,13 @@
 @extends('layouts.auth')
 
-@section('title','認証メール')
+@section('title', '認証メール')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/verify.css') }}">
 @endsection
 
 @section('content')
-<div class="container">
+    <div class="container">
         <div class="mail-message__contents">
             <div>
                 <span class="send-message">登録していただいたメールアドレスに認証メールを送付しました。<br>メール認証を完了してください。</span>
@@ -23,8 +23,3 @@
     </div>
 
 @endsection
-
-
-
-
-
