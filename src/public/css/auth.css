@@ -1,0 +1,26 @@
+body {
+    font-family: "Kranky", 'メイリオ';
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* head部分 */
+
+.main-header {
+    width: 100%;
+    height: 175px;
+    background-color: #d9d9d9;
+
+}
+
+.title-name {
+    background-color: #d9d9d9;
+    border: none;
+    font-size: 128px;
+    font-family: "Kranky", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: black;
+    padding-left: 20px;
+    text-decoration: none;
+}

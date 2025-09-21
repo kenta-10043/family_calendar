@@ -39,11 +39,11 @@ logs:
 
 # PHP コンテナに入る（bash）
 bash:
-	docker-compose exec php bash
+	docker-compose exec php bash || true
 
 # MySQL コンテナに入る
 mysql:
-	docker-compose exec mysql bash
+	docker-compose exec mysql bash || true
 
 ##########################
 # Laravel 権限・キャッシュ操作

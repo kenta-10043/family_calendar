@@ -1,0 +1,55 @@
+/* メイン */
+.main__content {
+    width: 100%;
+}
+
+.login-form__title {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.login__form {
+    max-width: 1440px;
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.login__items {
+    text-align: justify;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.login__inner {
+    margin-bottom: 40px;
+}
+
+.item-label {
+    font-weight: bold;
+}
+
+.input__form {
+    width: 50%;
+    margin-right: 0;
+}
+
+/* 遷移系 */
+.login__button {
+    width: 750px;
+}
+
+
+.register__link{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+
+/* エラー表示 */
+.form__error {
+    color: red;
+}
+
+

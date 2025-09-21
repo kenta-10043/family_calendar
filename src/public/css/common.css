@@ -1,5 +1,5 @@
 body {
-    font-family: "Kranky", serif;
+    font-family: "Kranky", 'メイリオ';
     font-weight: 400;
     font-style: normal;
 }
@@ -29,20 +29,6 @@ body {
     padding-left: 20px;
 }
 
-.link__button1 {}
-
-.button__chat {}
-
-.button__thread {}
-
-.link__button2 {}
-
-.button__diary {}
-
-.button__logout {}
-
-.button__login {}
-
 /* main部分 */
 
 .container {
@@ -71,8 +57,38 @@ body {
 
 }
 
-.content__search {}
+/* 遷移系 */
+.button__logout {
+    border: none;
+    background-color: #d9d9d9;
+    text-decoration: none;
+    font-family: "Kranky", serif;
+    font-size: xx-large;
+    cursor: pointer;
+}
+
+ .link__button1 {
+    margin-left: 186px;
+ }
+
+.link__chat, .link__thread, .link__diary, .link__login {
+    text-decoration: none;
+    color: black;
+    font-size: xx-large;
+}
+
+.link__thread {
+    display: block;
+}
+
+.link__button2 {}
+
+.link__diary {}
+
+.link__login {}
+
+/* .content__search {}
 
 .content__diary {}
 
-.content__thread {}
+.content__thread {} */
