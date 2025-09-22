@@ -53,8 +53,9 @@
             <div class="content__diary">diary</div>
             <div class="content__thread">thread</div>
         </div>
+
+        @yield('content')
     </div>
-    @yield('content')
 </body>
 
 </html>

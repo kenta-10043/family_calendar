@@ -1,0 +1,30 @@
+
+.calendar__main {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 60px repeat(6, 150px);
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+.calendar-name{
+    text-align: center;
+    height: 75px;
+
+}
+.day-name{
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.day__box {
+    border: #d9d9d9 solid 1px;
+}
+
+.day__box.today {
+    border: gray solid 3px;
+    background-color: lightskyblue;
+}
+
