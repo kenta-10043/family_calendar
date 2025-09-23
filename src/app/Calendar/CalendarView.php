@@ -9,15 +9,15 @@ class CalendarView
 {
     protected $carbon;
 
-    public function __construct($date = null)   // nullで日付がなかった場合には本日を呼ぶ
+    public function __construct(?Carbon $date = null)   // nullで日付がなかった場合には本日を呼ぶ
     {
-        $this->carbon = new carbon($date);  //carbonのインスタンス生成 表示するカレンダー
+        $this->carbon = $date ? $date->copy()->startOfMonth() : now()->startOfMonth();  //carbonのインスタンス生成 表示するカレンダー
     }
 
     // このカレンダーの基準月を返す
     public function getDate(): Carbon
     {
-        return $this->carbon;
+        return $this->carbon->copy();
     }
 
     public function getTitle()  //カレンダーのタイトル作成

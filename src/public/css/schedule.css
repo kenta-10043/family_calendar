@@ -11,8 +11,24 @@
 .calendar-name{
     text-align: center;
     height: 75px;
+    margin: 0;
+    padding: 20px;
 
 }
+
+.link__month{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.link__previous, .link__this, .link__next{
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    display: block;
+}
+
 .day-name{
     text-align: center;
     font-size: x-large;
