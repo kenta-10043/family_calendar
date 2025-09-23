@@ -27,8 +27,11 @@
 
             @foreach ($weeks as $week)
                 @foreach ($week->days as $day)
-                    <div class="day__box{{ $day->isToday() ? ' today' : '' }}">
-                        {{ $day->date->format('j') }}</div>
+                    <div
+                        class="day__box{{ $day->isToday() ? ' day__box-today' : '' }} {{ $day->isSameMonth($currentMonth) ? '' : ' day__box-other-month' }}">
+                        {{-- クラスを複数つけるときは半角スペース区切り、条件付きCSSの場合はクラス名の先頭に半角スペース --}}
+                        {{ $day->date->format('j') }}
+                    </div>
                 @endforeach
             @endforeach
 

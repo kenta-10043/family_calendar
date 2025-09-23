@@ -19,4 +19,9 @@ class CalendarDay
     {
         return $this->date->isToday();
     }
+
+    public function isSameMonth($currentMonth): bool
+    {
+        return $this->date->isSameMonth($currentMonth);
+    }
 }
