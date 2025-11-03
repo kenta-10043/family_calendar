@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
-@section('title', 'Family Calendar')
+@section('title', 'schedule_detail')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/schedule/schedule.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/schedule/detail.css') }}">
 @endsection
 
 @section('content')
     <div>
-        <h2 class="calendar-name">{{ $title }}</h2>
+        <h2 class="calendar-name">{{ $title->isoFormat('Y / m / d(ddd)') }}</h2>
         <div class="link__month">
-            <a class="link__previous" href="{{ route('schedule.calendar', ['date' => $prev->format('Y-m')]) }}">◀previous
-                month</a>
-            <a class="link__this" href="{{ route('schedule.calendar') }}">-this month-</a>
-            <a class="link__next" href="{{ route('schedule.calendar', ['date' => $next->format('Y-m')]) }}">next month▶</a>
+            <a class="link__previous" href="{{ route('schedule.detail', ['date' => $prev->format('Y/m/d(ddd)')]) }}">◀previous
+                day</a>
+            <a class="link__this" href="{{ route('schedule.detail') }}">-this day-</a>
+            <a class="link__next" href="{{ route('schedule.detail', ['date' => $next->format('Y/m/d(ddd)')]) }}">next day▶</a>
         </div>
 
         <div class="calendar__main">

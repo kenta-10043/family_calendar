@@ -43,18 +43,29 @@ body {
 
 /* side部分 */
 
+.user__profile{
+    display: flex;
+    align-items: center;
+}
+.user__image {
+    object-fit: cover;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    display: inline-block;
+}
 .content__user-name {
     width: 90%;
     height: 50px;
     background-color: #e3e6d2;
     margin: 0 auto;
-    border-radius: 10%;
+    border-radius: 10px;
     border: #B2B3A7 1px solid;
     text-align: center;
     font-weight: bold;
     font-size: xx-large;
-
 }
+
 
 /* 遷移系 */
 .button__logout {
@@ -74,6 +85,13 @@ body {
     text-decoration: none;
     color: black;
     font-size: xx-large;
+    transition: transform 0.2s ease;
+    display: inline-block;
+        /* なめらかに変化 */
+}
+
+.link__chat.big {
+    transform: scale(1.5);
 }
 
 .link__thread {

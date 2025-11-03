@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kranky&display=swap" rel="stylesheet">
+    {{-- @vite(['resources/js/app.js']) --}}
 
 </head>
 
@@ -36,7 +37,7 @@
             @else
                 <a class="title-name" href="{{ route('schedule.calendar') }}">Family Calendar</a>
                 <div class="link__button1">
-                    <a class="link__chat" href="#">chat</a>
+                    <a class="link__chat" id="btn" href="#">chat</a>
                     <a class="link__thread" href="#">thread</a>
                 </div>
                 <div class="link__button2">
@@ -48,7 +49,11 @@
     </header>
     <div class="container">
         <div class="side__content">
-            <div class="content__user-name">user_name</div>
+            <div class="user__profile">
+                <img class="user__image" src="{{ asset('storage/' . $targetUser->user_image) }}"
+                    alt="{{ $targetUser->name }}">
+                <div class="content__user-name">{{ $targetUser->name }}</div>
+            </div>
             <div class="content__search">search</div>
             <div class="content__diary">diary</div>
             <div class="content__thread">thread</div>
@@ -56,6 +61,8 @@
 
         @yield('content')
     </div>
+
+
 </body>
 
 </html>
