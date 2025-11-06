@@ -11,6 +11,7 @@ class Schedule extends Model
 
     protected $fillable = [
         'task',
+        'date',
     ];
 
     public function categories()

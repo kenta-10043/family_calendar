@@ -22,7 +22,7 @@ class CalendarView
 
     public function getTitle()  //カレンダーのタイトル作成
     {
-        return $this->carbon->format('Y年n月');
+        return $this->carbon;
     }
 
     public function getWeeks()  //1か月を１週間の集まりとして生成

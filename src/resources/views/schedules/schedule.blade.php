@@ -31,10 +31,20 @@
                         class="day__box{{ $day->isToday() ? ' day__box-today' : '' }} {{ $day->isSameMonth($currentMonth) ? '' : ' day__box-other-month' }}">
                         {{-- クラスを複数つけるときは半角スペース区切り、条件付きCSSの場合はクラス名の先頭に半角スペース --}}
                         {{ $day->date->format('j') }}
-                        @foreach ($users as $user)
-                            <p>{{ $user->name }}:{{ $user->schedules->task }}</p>
-                        @endforeach
-                        <a href="{{ route('schedule.detail', ['id' => $schedule->id ?? null]) }}">more</a>
+
+                        @php
+                            $schedules = $calendarSchedules[$day->date->format('Y-m-d')] ?? collect();
+                        @endphp
+                        <a class="link__detail"
+                            href="{{ route('schedule.detail', ['id' => $schedules->first()->id ?? null, 'date' => $day->date->format('Y-m-d')]) }}">more</a>
+                        @forelse ($schedules as $schedule)
+                            @foreach ($schedule->users as $user)
+                                <p class="schedule__items">{{ $user->name }}：{{ $schedule->task }}</p>
+                            @endforeach
+                        @empty
+                        @endforelse
+
+
                     </div>
                 @endforeach
             @endforeach
