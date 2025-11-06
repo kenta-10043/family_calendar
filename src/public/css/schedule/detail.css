@@ -1,0 +1,27 @@
+.calendar-name {
+    text-align: center;
+    height: 75px;
+    margin: 0;
+    padding: 20px;
+
+}
+
+.link__day {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.link__previous,
+.link__this,
+.link__next {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    display: block;
+}
+
+.schedule__form{
+    display: flex;
+    justify-content: space-around;
+}

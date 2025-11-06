@@ -15,7 +15,6 @@ class ScheduleController extends Controller
 {
     public function calendar(Request $request)
     {
-
         $date = $request->input('date') ? Carbon::parse($request->input('date')) : now();
         $calendar = new CalendarView($date);
         $title = $calendar->getTitle()->format('Y年n月');
@@ -43,7 +42,6 @@ class ScheduleController extends Controller
         $calendarSchedules = $allSchedules->groupBy(fn($scheduleDate) => Carbon::parse($scheduleDate->date)->format('Y-m-d'));
         // 日付ごとにグループ化 （2025-11-06=>collection([schedule(id:1)]のような感じ
 
-
         return view(
             'schedules.schedule',
             compact('calendarSchedules', 'targetUser', 'users', 'title', 'weeks', 'currentMonth', 'next', 'prev', 'date')
@@ -54,21 +52,20 @@ class ScheduleController extends Controller
     {
         $schedule = $id ? Schedule::find($id) : null;
         $date = $request->query('date') ? Carbon::parse($request->query('date')) : now();
+
         $next = $date->copy()->addDay();
         $prev = $date->copy()->subDay();
 
         $targetUser = Auth::user();
-        $users = User::whereHas('schedules', function ($query) {
-            $query->whereNotNull('task')->where('task', '');
-        })->get();
-        $schedules = Schedule::where('date', $date)->get();
+
+        $schedules =  Schedule::with('users')->whereDate('date', $date)->whereNotNull('task')->where('task', '!=', '')->get();
 
 
 
 
         return view(
             'schedules.schedule_detail',
-            compact('date', 'schedules', 'targetUser', 'users', 'next', 'prev')
+            compact('date', 'schedules', 'targetUser', 'next', 'prev')
         );
     }
 }
