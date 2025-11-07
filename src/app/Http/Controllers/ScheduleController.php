@@ -91,4 +91,16 @@ class ScheduleController extends Controller
 
         return redirect(route('schedule.calendar'));
     }
+
+    public function update(Request $request, $id = null)
+    {
+        $schedule = Schedule::findOrFail($id);
+        if ($request->has('status_id')) {
+            $schedule->update([
+                'status_id' => $request->input('status_id'),
+            ]);
+        }
+
+        return redirect(route('schedule.detail', ['id' => $schedule->id ?? null, 'date' => $request->input('date')]));
+    }
 }

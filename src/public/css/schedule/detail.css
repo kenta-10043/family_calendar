@@ -20,6 +20,20 @@
     color: black;
     display: block;
 }
+
+.schedule__table{
+    max-width: 1540px;
+    width: 100%;
+}
+
+.table__items-main{
+    border-bottom: 3px solid #b7b6b6;
+}
+
+.table__items{
+    border-bottom: 1px dotted #b7b6b6;
+}
+
 .user__profile {
     display: flex;
     align-items: center;
@@ -33,11 +47,15 @@
     display: inline-block;
 }
 
-.schedule__content{
-    display: flex;
-    justify-content: space-around;
+.item-task, .item-category, .item-status, .item-category-add{
+    text-align: center;
 }
 
-.button__area{
+.item-category, .item-status{
+    font-size: 25px;
+}
 
+
+.schedule__item-task{
+    height: 75px;
 }

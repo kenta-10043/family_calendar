@@ -37,6 +37,8 @@
 
 .day__box {
     border: #d9d9d9 solid 1px;
+    overflow: hidden;
+    height: 150px;
 }
 
 .day__box-today {
@@ -51,7 +53,15 @@
 
 .schedule__items{
     font-size: 11px;
+    width: 150px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
+
+
 .link__detail{
     text-decoration: none;
     color: black;
