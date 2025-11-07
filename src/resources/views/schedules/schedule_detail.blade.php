@@ -59,6 +59,7 @@
                                     <input type="hidden" name="status_id" value="1">
                                     <button type="submit" class="btn btn-incomplete">Incomplete</button>
                                 @endif
+                                <input type="hidden" name="date" value="{{ $date->toDateString() }}">
                             </form>
                         </td>
                     @endif

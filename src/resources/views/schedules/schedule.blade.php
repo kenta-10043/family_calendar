@@ -36,7 +36,7 @@
                             $schedules = $calendarSchedules[$day->date->format('Y-m-d')] ?? collect();
                         @endphp
                         <a class="link__detail"
-                            href="{{ route('schedule.detail', ['id' => $schedules->first()->id ?? null, 'date' => $day->date->format('Y-m-d')]) }}">more</a>
+                            href="{{ route('schedule.detail', ['date' => $day->date->format('Y-m-d')]) }}">more</a>
                         @forelse ($schedules as $schedule)
                             @foreach ($schedule->users as $user)
                                 <p class="schedule__items">{{ $user->name }}：{{ $schedule->task }}</p>

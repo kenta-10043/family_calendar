@@ -54,9 +54,8 @@ class ScheduleController extends Controller
         );
     }
 
-    public function detail(Request $request, $id = null)
+    public function detail(Request $request)
     {
-        $schedule = $id ? Schedule::find($id) : null;
         $date = $request->query('date') ? Carbon::parse($request->query('date')) : now();
 
         $next = $date->copy()->addDay();
@@ -89,7 +88,7 @@ class ScheduleController extends Controller
         $schedule->users()->attach($data['user_id']);
 
 
-        return redirect(route('schedule.calendar'));
+        return redirect(route('schedule.detail', ['date' => $request->input('date')]));
     }
 
     public function update(Request $request, $id = null)
@@ -100,7 +99,6 @@ class ScheduleController extends Controller
                 'status_id' => $request->input('status_id'),
             ]);
         }
-
-        return redirect(route('schedule.detail', ['id' => $schedule->id ?? null, 'date' => $request->input('date')]));
+        return redirect(route('schedule.detail', ['date' => $request->input('date')]));
     }
 }
