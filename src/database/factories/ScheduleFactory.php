@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Carbon\Carbon;
+use App\Models\Category;
+use App\Models\Status;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Schedule>
@@ -27,7 +29,10 @@ class ScheduleFactory extends Factory
             '会議準備',
         ];
 
+
         return [
+            'category_id' => 1,
+            'status_id' => 1,
             'task' => $this->faker->randomElement($tasks),
             'date' => Carbon::now()->addDays(rand(0, 30)),
         ];

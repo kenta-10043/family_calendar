@@ -7,8 +7,14 @@ use App\Calendar\CalendarView;
 use App\Calendar\CalendarWeek;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ScheduleRequest;
 use App\Models\User;
 use App\Models\Schedule;
+use App\Models\Category;
+use App\Models\Status;
+use App\Enums\CategoryName;
+use App\Enums\TaskStatus;
+
 
 
 class ScheduleController extends Controller
@@ -58,14 +64,31 @@ class ScheduleController extends Controller
 
         $targetUser = Auth::user();
 
-        $schedules =  Schedule::with('users')->whereDate('date', $date)->whereNotNull('task')->where('task', '!=', '')->get();
+        $schedules =  Schedule::with('users', 'status', 'category')->whereDate('date', $date)->whereNotNull('task')->where('task', '!=', '')->get();
 
-
-
+        $categories = Category::all();
+        $status = Status::find(1);
 
         return view(
             'schedules.schedule_detail',
-            compact('date', 'schedules', 'targetUser', 'next', 'prev')
+            compact('date', 'schedules', 'targetUser', 'next', 'prev', 'categories', 'status')
         );
+    }
+
+    public function store(ScheduleRequest $request)
+    {
+        $data = $request->validated();
+        $schedule = Schedule::create([
+            'task' => $data['task'],
+            'category_id' => $data['category_id'],
+            'status_id' => $data['status_id'],
+            'date' => $data['date'],
+
+        ]);
+
+        $schedule->users()->attach($data['user_id']);
+
+
+        return redirect(route('schedule.calendar'));
     }
 }

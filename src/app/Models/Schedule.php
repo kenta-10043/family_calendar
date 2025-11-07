@@ -10,14 +10,30 @@ class Schedule extends Model
     use HasFactory;
 
     protected $fillable = [
+        'status_id',
+        'category_id',
         'task',
         'date',
     ];
 
-    public function categories()
+    public function category()
     {
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class)->withDefault(
+            [
+                'category' => 0,
+            ]
+        );
     }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class)->withDefault(
+            [
+                'status' => 0,
+            ]
+        );
+    }
+
 
     public function users()
     {

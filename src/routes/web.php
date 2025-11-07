@@ -16,3 +16,4 @@ use App\Http\Controllers\ScheduleController;
 
 Route::get('/', [ScheduleController::class, 'calendar'])->name('schedule.calendar');
 Route::get('/schedule/detail/{id?}', [ScheduleController::class, 'detail'])->name('schedule.detail');
+Route::post('/schedule/detail/store', [ScheduleController::class, 'store'])->name('schedule.store');

@@ -4,14 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Enums\CategoryName;
+use App\Enums\TaskStatus;
 
-class Category extends Model
+class Status extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'category',
+        'status',
+        'changed_at',
     ];
 
     public function schedules()
@@ -21,6 +22,6 @@ class Category extends Model
 
     public function getLabelAttribute(): string
     {
-        return CategoryName::from($this->category)->label();
+        return TaskStatus::from($this->status)->label();
     }
 }

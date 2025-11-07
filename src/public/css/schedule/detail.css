@@ -20,8 +20,24 @@
     color: black;
     display: block;
 }
+.user__profile {
+    display: flex;
+    align-items: center;
+}
 
-.schedule__form{
+.user__image {
+    object-fit: cover;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.schedule__content{
     display: flex;
     justify-content: space-around;
+}
+
+.button__area{
+
 }

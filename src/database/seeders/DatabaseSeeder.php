@@ -14,6 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(StatusSeeder::class);
+        $this->call(CategorySeeder::class);
+
         User::factory()->count(3)->hasAttached(
 
             Schedule::factory()->count(5),
