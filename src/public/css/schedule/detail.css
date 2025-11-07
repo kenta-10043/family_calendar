@@ -1,0 +1,61 @@
+.calendar-name {
+    text-align: center;
+    height: 75px;
+    margin: 0;
+    padding: 20px;
+
+}
+
+.link__day {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.link__previous,
+.link__this,
+.link__next {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    display: block;
+}
+
+.schedule__table{
+    max-width: 1540px;
+    width: 100%;
+}
+
+.table__items-main{
+    border-bottom: 3px solid #b7b6b6;
+}
+
+.table__items{
+    border-bottom: 1px dotted #b7b6b6;
+}
+
+.user__profile {
+    display: flex;
+    align-items: center;
+}
+
+.user__image {
+    object-fit: cover;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.item-task, .item-category, .item-status, .item-category-add{
+    text-align: center;
+}
+
+.item-category, .item-status{
+    font-size: 25px;
+}
+
+
+.schedule__item-task{
+    height: 75px;
+}

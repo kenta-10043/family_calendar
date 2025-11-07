@@ -23,6 +23,8 @@ use Laravel\Fortify\Contracts\VerifyEmailViewResponse as VerifyEmailViewResponse
 use App\Http\Responses\VerifyEmailViewResponse;
 use Laravel\Fortify\Contracts\VerifyEmailResponse as VerifyEmailResponseContract;
 use App\Http\Responses\VerifyEmailResponse;
+use Laravel\Fortify\Contracts\LogoutResponse;
+use App\Http\Responses\CustomLogoutResponse;
 
 
 class FortifyServiceProvider extends ServiceProvider
@@ -52,22 +54,20 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::createUsersUsing(CreateNewUser::class);
 
         Fortify::registerView(function () {
-         return view('auth.register');
-     });
+            return view('auth.register');
+        });
 
-     Fortify::loginView(function () {
-         return view('auth.login');
-     });
+        Fortify::loginView(function () {
+            return view('auth.login');
+        });
 
-     RateLimiter::for('login', function (Request $request) {
-         $email = (string) $request->email;
+        RateLimiter::for('login', function (Request $request) {
+            $email = (string) $request->email;
 
-         return Limit::perMinute(10)->by($email . $request->ip());
-    });
+            return Limit::perMinute(10)->by($email . $request->ip());
+        });
         app()->bind(FortifyLoginRequest::class, LoginRequest::class);
 
-
+        $this->app->singleton(LogoutResponse::class, CustomLogoutResponse::class);
     }
 }
-
-
