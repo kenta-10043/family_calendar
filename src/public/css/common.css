@@ -38,6 +38,7 @@ body {
 
 .side__content {
     background-color: #d9d9d9;
+    max-height: 1000px;
 
 }
 
@@ -79,6 +80,7 @@ body {
 
  .link__button1 {
     margin-left: 186px;
+
  }
 
 .link__chat, .link__thread, .link__diary, .link__login {
@@ -87,10 +89,12 @@ body {
     font-size: xx-large;
     transition: transform 0.2s ease;
     display: inline-block;
-        /* なめらかに変化 */
+    /* なめらかに変化 */
 }
 
-.link__chat.big {
+.link__chat.big,
+.link__thread.big,.link__diary.big,
+.link__login.big {
     transform: scale(1.5);
 }
 

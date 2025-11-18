@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\DiaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,6 @@ Route::get('/', [ScheduleController::class, 'calendar'])->name('schedule.calenda
 Route::get('/schedule/detail', [ScheduleController::class, 'detail'])->name('schedule.detail');
 Route::post('/schedule/detail/store', [ScheduleController::class, 'store'])->name('schedule.store');
 Route::put('/schedule/detail/update/{id}', [ScheduleController::class, 'update'])->name('schedule.update');
+
+Route::get('/diary', [DiaryController::class, 'index'])->name('diary.index');
+Route::post('/diary', [DiaryController::class, 'store'])->name('diary.store');

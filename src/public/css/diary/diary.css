@@ -1,0 +1,44 @@
+.diary__content{
+    text-align: center;
+}
+
+.diary__items{
+    display: flex;
+}
+
+.diary__items-content{
+    width: 650px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 0;
+}
+
+svg.w-5.h-5 {
+    width: 30px;
+    height: 30px;
+}
+
+.modal {
+    display: none;
+    /* 最初は非表示 */
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 50%;
+    overflow: auto;
+    background-color: #b7b6b6;
+
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+}
+
+

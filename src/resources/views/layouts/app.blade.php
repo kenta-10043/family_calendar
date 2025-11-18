@@ -24,11 +24,11 @@
             @if (Auth::check())
                 <a class="title-name" href="{{ route('schedule.calendar') }}">Family Calendar</a>
                 <div class="link__button1">
-                    <a class="link__chat" href="#">chat</a>
+                    <a class="link__chat" id="btn" href="#">chat</a>
                     <a class="link__thread" href="#">thread</a>
                 </div>
                 <div class="link__button2">
-                    <a class="link__diary" href="#">diary</a>
+                    <a class="link__diary" href="{{ route('diary.index') }}">diary</a>
                     <form action="/logout" method="post">
                         @csrf
                         <button class="button__logout">logout</button>
@@ -38,7 +38,7 @@
                 <a class="title-name" href="{{ route('schedule.calendar') }}">Family Calendar</a>
                 <div class="link__button1">
                     <a class="link__chat" id="btn" href="#">chat</a>
-                    <a class="link__thread" href="#">thread</a>
+                    <a class="link__thread" id="btn" href="#">thread</a>
                 </div>
                 <div class="link__button2">
                     <a class="link__diary" href="#">diary</a>
@@ -54,7 +54,11 @@
                     alt="{{ $targetUser->name }}">
                 <div class="content__user-name">{{ $targetUser->name }}</div>
             </div>
-            <div class="content__search">search</div>
+            <div class="content__search">task search</div>
+            <form action="{{ route('schedule.detail') }}">
+                <input type="date" name="date">
+                <button type="submit">検索</button>
+            </form>
             <div class="content__diary">diary</div>
             <div class="content__thread">thread</div>
         </div>
@@ -62,6 +66,19 @@
         @yield('content')
     </div>
 
+    <script>
+        const btns = document.querySelectorAll('.link__chat, .link__thread,.link__diary, .link__login');
+        btns.forEach(function(btn) {
+            btn.addEventListener('click', () => {
+                btn.classList.add('big');
+                console.log(`${btn.className}`);
+
+                setTimeout(() => {
+                    btn.classList.remove('big');
+                }, 300);
+            });
+        });
+    </script>
 
 </body>
 
