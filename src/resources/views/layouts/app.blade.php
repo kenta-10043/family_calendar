@@ -59,7 +59,14 @@
                 <input type="date" name="date">
                 <button type="submit">検索</button>
             </form>
-            <div class="content__diary">diary</div>
+
+            <p class="user__diary">diary</p>
+            <div class="content__diary">
+                <p>{{ $latestDiary->date }}</p>
+                <p class="content__diary-title">題名：{{ $latestDiary->title }}</p>
+                <p class="content__diary-content">本文：{{ $latestDiary->content }}</p>
+            </div>
+
             <div class="content__thread">thread</div>
         </div>
 

@@ -67,6 +67,33 @@ body {
     font-size: large;
 }
 
+.user__diary{
+    margin-bottom: 0;
+}
+
+.content__diary {
+    background-color: #e3e6d2;
+    border: #B2B3A7 1px solid;
+    border-radius: 10px;
+    margin: 5px 5px;
+}
+
+.content__diary-title{
+    font-size: 11px;
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.content__diary-content{
+    font-size: 11px;
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 /* 遷移系 */
 .button__logout {
@@ -102,6 +129,8 @@ body {
     display: block;
 }
 
+
+
 /* .link__button2 {}
 
 .link__diary {}
@@ -110,6 +139,6 @@ body {
 
 /* .content__search {}
 
-.content__diary {}
+
 
 .content__thread {} */

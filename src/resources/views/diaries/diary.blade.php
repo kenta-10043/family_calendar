@@ -7,42 +7,50 @@
 @endsection
 
 @section('content')
-
-    @if (session('success'))
-        <div>
-            {{ session('success') }}
-        </div>
-    @endif
-
     <div>
+        @if (session('success'))
+            <div>
+                {{ session('success') }}
+            </div>
+        @endif
+
+
         <div>
-            <span>{{ $diaryDate }}</span>
-            <h2>Diary</h2>
+            <span class="main-date">{{ $diaryDate }}</span>
+            <h2 class="content-name">Diary</h2>
         </div>
         @forelse ($diaries as $diary)
             <div class="diary__items">
-                <p class="diary__items-date"> {{ Carbon\Carbon::parse($diary->date)->format('Y-m-d (D)') }}</p>
-                <div class="diary__items-title">
-                    <label for="diary-title">title</label>
-                    <span class="diary-title" id="diary-title"> {{ $diary->title }}</span>
+                <div class="diary__items-date">
+                    <label class="diary__items-label" for="diary-date">Date</label>
+                    <p class="diary__items-date" id="diary-date">
+                        {{ Carbon\Carbon::parse($diary->date)->format('Y-m-d (D)') }}</p>
                 </div>
+                <div class="diary__items-title">
+                    <label class="diary__items-label" for="diary-title">Title</label>
+                    <p class="diary__items-title" id="diary-title"> {{ $diary->title }}</p>
+                </div>
+                <div>
+                    <label class="diary__items-label" for="diary-content">Content</label>
+                    <p class="diary__items-content" id="content">{{ $diary->content }} </p>
+                </div>
+                <a class="button-open" data-id="{{ $diary->id }}"><img class="detail__image"
+                        src="{{ asset('storage/' . 'others/枠つきの羽根ペンのアイコン素材.png') }}"></a>
             </div>
-            <p class="diary__items-content">{{ $diary->content }} </p>
-            <button class="button-open" id="openBtu-{{ $diary->id }}">detail</button>
 
+            {{-- モーダル部分 --}}
             <div id="myModal-{{ $diary->id }}" class="modal">
-                <button id="closeBtu-{{ $diary->id }}" class="button-close">close</button>
+                <button data-id="{{ $diary->id }}" class="button-close">close</button>
                 <h2>{{ $diary->date }}</h2>
                 <p>{{ $diary->title }}</p>
                 <p>{{ $diary->content }}</p>
 
-                <form action=#" method="POST">
-                    {{-- <form action="{{ route('diary.update', ['id' => $diary->id]) }}" method="POST"> --}}
+                <form action="{{ route('diary.update', ['id' => $diary->id]) }}" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="diary__content">
                         <div>
-                            <input type="date" name="date" value="{{ $request->date ?? now()->toDateString() }}">
+                            <input type="date" name="date" value="{{ $diary->date }}">
                         </div>
 
                         @error('date')
@@ -69,11 +77,12 @@
                         <button type="submit">更新</button>
                     </div>
                 </form>
-                <form action="#" method="POST">
-                    {{-- <form action="{{ route('diary.destroy', ['id' => $diary->id]) }}" method="POST"> --}}
+
+                <form action="{{ route('diary.destroy', ['id' => $diary->id]) }}" method="POST">
                     @method('DELETE')
                     @csrf
-                    <button type="submit">削除</button>
+                    <button type="submit"><img class="detail__image"
+                            src="{{ asset('storage/' . 'others/ゴミ箱のアイコン.png') }}"></button>
                 </form>
             </div>
 
@@ -82,11 +91,12 @@
 
         {{ $diaries->links() }}
 
+        {{-- 新規作成フォーム --}}
         <form action="{{ route('diary.store') }}" method="POST">
             @csrf
             <div class="diary__content">
                 <div>
-                    <input type="date" name="date" value="{{ $request->date ?? now()->toDateString() }}">
+                    <input type="date" name="date" value="{{ old('date') ?? now()->toDateString() }}">
                 </div>
 
                 @error('date')
@@ -111,7 +121,6 @@
                     <div>{{ $message }}</div>
                 @enderror
 
-
                 <button type="submit">登録</button>
             </div>
 
@@ -119,15 +128,24 @@
     </div>
 
     <script>
-        let openBtu = document.getElementById("openBtu-{{ $diary->id }}");
-        console.log(openBtu);
-        openBtu.addEventListener('click', () => {
-            document.getElementById("myModal-{{ $diary->id }}").style.display = 'block';
+        let openButtons = document.querySelectorAll(".button-open");
+        openButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                let id = button.dataset.id;
+                let modal = document.getElementById("myModal-" + id);
+                modal.style.display = 'block';
+            });
         });
 
-        let closeBtu = document.getElementById("closeBtu-{{ $diary->id }}");
-        closeBtu.addEventListener('click', () => {
-            document.getElementById("myModal-{{ $diary->id }}").style.display = 'none';
+        let closeButtons = document.querySelectorAll(".button-close");
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                let id = button.dataset.id;
+                let modal = document.getElementById("myModal-" + id);
+                modal.style.display = 'none';
+            });
+
+
         })
     </script>
 @endsection

@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'gon@example.com',
             'password' => bcrypt('password'),
             'email_verified_at' => now(),
+            'user_image' => 'user_images/サラリーマン.png',
         ]);
 
         Diary::factory()->count(10)->for($user)->create();

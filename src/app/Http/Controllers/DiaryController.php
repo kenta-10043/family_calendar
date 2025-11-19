@@ -17,7 +17,9 @@ class DiaryController extends Controller
         $diaryDate = Carbon::parse($request->input('date'))->isoFormat('YYYY年MM月DD日（ddd）') ?? Carbon::now()->isoFormat('YYYY年MM月DD日（ddd）');
 
         $diaries = Diary::with('user')->where('user_id', $targetUser->id)->orderBy('date', 'desc')->paginate(3);
-        return view('diaries.diary', compact('diaryDate', 'targetUser', 'diaries'));
+        $latestDiary = Diary::with('user')->where('user_id', $targetUser->id)->latest('date')->first();
+
+        return view('diaries.diary', compact('diaryDate', 'targetUser', 'diaries', 'latestDiary'));
     }
 
     public function store(DiaryRequest $request)
@@ -32,5 +34,25 @@ class DiaryController extends Controller
         ]);
 
         return redirect()->route('diary.index')->with('success', "日記の登録が完了しました");
+    }
+
+    public function update(Request $request, $id)
+    {
+        $diary = Diary::findOrFail($id);
+        $diary->update($request->only([
+            'title',
+            'date',
+            'content',
+        ]));
+
+        return redirect()->route('diary.index')->with('success', "日記の更新が完了しました");
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        $diary = Diary::findOrFail($id);
+        $diary->delete();
+
+        return redirect()->route('diary.index')->with('success', "日記の削除が完了しました");
     }
 }
