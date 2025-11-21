@@ -39,13 +39,17 @@ class DiaryController extends Controller
     public function update(Request $request, $id)
     {
         $diary = Diary::findOrFail($id);
-        $diary->update($request->only([
+
+        $data = array_filter($request->only([
             'title',
             'date',
             'content',
-        ]));
+        ]), function ($value) {
+            return $value !== null && $value !== '';
+        });
+        $diary->update($data);
 
-        return redirect()->route('diary.index')->with('success', "日記の更新が完了しました");
+        return back()->with('success', "日記の更新が完了しました");
     }
 
     public function destroy(Request $request, $id)

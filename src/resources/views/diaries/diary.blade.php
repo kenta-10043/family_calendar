@@ -40,50 +40,58 @@
 
             {{-- モーダル部分 --}}
             <div id="myModal-{{ $diary->id }}" class="modal">
-                <button data-id="{{ $diary->id }}" class="button-close">close</button>
-                <h2>{{ $diary->date }}</h2>
-                <p>{{ $diary->title }}</p>
-                <p>{{ $diary->content }}</p>
+                <div class="modal__content">
+                    <button data-id="{{ $diary->id }}" class="button-close">close</button>
 
-                <form action="{{ route('diary.update', ['id' => $diary->id]) }}" method="POST">
-                    @method('PUT')
-                    @csrf
-                    <div class="diary__content">
-                        <div>
-                            <input type="date" name="date" value="{{ $diary->date }}">
-                        </div>
+                    <h2>{{ $diary->date }}</h2>
 
-                        @error('date')
-                            <div>{{ $message }}</div>
-                        @enderror
-
-                        <div>
-                            <label for="title">title</label>
-                            <input type="text" id="title" name="title" value="{{ old('title') }}"
-                                placeholder="wite here">
-                        </div>
-                        @error('title')
-                            <div>{{ $message }}</div>
-                        @enderror
-
-                        <div>
-                            <label for="content">本文</label>
-                            <textarea name="content" id="content" cols="30" rows="10" placeholder="write here"></textarea>
-                        </div>
-                        @error('content')
-                            <div>{{ $message }}</div>
-                        @enderror
-
-                        <button type="submit">更新</button>
+                    <div>
+                        <label class="modal__content__label" for="title">Title</label>
+                        <p class="modal__content__title" id="title">{{ $diary->title }}</p>
                     </div>
-                </form>
 
-                <form action="{{ route('diary.destroy', ['id' => $diary->id]) }}" method="POST">
-                    @method('DELETE')
-                    @csrf
-                    <button type="submit"><img class="detail__image"
-                            src="{{ asset('storage/' . 'others/ゴミ箱のアイコン.png') }}"></button>
-                </form>
+                    <div>
+                        <label class="modal__content__label" for="content">Content</label>
+                        <p class="modal__content__content" id="content">{{ $diary->content }}</p>
+                    </div>
+
+                    <form class="delete_button__area" action="{{ route('diary.destroy', ['id' => $diary->id]) }}"
+                        method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button class="delete__button" type="submit"><img class="detail__image"
+                                src="{{ asset('storage/' . 'others/ゴミ箱のアイコン.png') }}"></button>
+                    </form>
+
+                    <form action="{{ route('diary.update', ['id' => $diary->id]) }}" method="POST">
+                        @method('PUT')
+                        @csrf
+                        <div class="diary__content">
+                            <div class="update__items">
+                                <div>
+                                    <label for="date">Date</label>
+                                    <input id="date" type="date" name="date" value="{{ $diary->date }}">
+                                </div>
+
+                                <div class="update__title">
+                                    <label for="title">Title</label>
+                                    <input class="input__title" type="text" id="title" name="title"
+                                        value="{{ old('title') }}" placeholder="wite here">
+                                </div>
+                            </div>
+
+                            <div class="update__content">
+                                <label for="content">Content</label>
+                                <textarea class="input__modal__content" name="content" id="content" cols="30" rows="10"
+                                    placeholder="write here"></textarea>
+                            </div>
+
+                            <button class="update__button" type="submit">Update</button>
+                        </div>
+                    </form>
+
+
+                </div>
             </div>
 
         @empty
@@ -95,33 +103,36 @@
         <form action="{{ route('diary.store') }}" method="POST">
             @csrf
             <div class="diary__content">
-                <div>
-                    <input type="date" name="date" value="{{ old('date') ?? now()->toDateString() }}">
+                <div class="create__items">
+                    <div>
+                        <label for="date">Date</label>
+                        <input type="date" id="date" name="date"
+                            value="{{ old('date') ?? now()->toDateString() }}">
+                    </div>
+
+                    @error('date')
+                        <div>{{ $message }}</div>
+                    @enderror
+
+                    <div class="create__title">
+                        <label for="title">title</label>
+                        <input class="input__title" type="text" id="title" name="title"
+                            value="{{ old('title') }}" placeholder="wite here">
+                    </div>
+                    @error('title')
+                        <div>{{ $message }}</div>
+                    @enderror
                 </div>
 
-                @error('date')
-                    <div>{{ $message }}</div>
-                @enderror
-
-                <div>
-                    <label for="title">title</label>
-                    <input type="text" id="title" name="title" value="{{ old('title') }}"
-                        placeholder="wite here">
-                </div>
-                @error('title')
-                    <div>{{ $message }}</div>
-                @enderror
-
-
-                <div>
-                    <label for="content">本文</label>
-                    <textarea name="content" id="content" cols="30" rows="10" placeholder="write here"></textarea>
+                <div class="create__content">
+                    <label for="content">Content</label>
+                    <textarea class="input__content" name="content" id="content" cols="30" rows="10" placeholder="write here"></textarea>
                 </div>
                 @error('content')
                     <div>{{ $message }}</div>
                 @enderror
 
-                <button type="submit">登録</button>
+                <button class="create__button" type="submit">Registration</button>
             </div>
 
         </form>
@@ -133,7 +144,7 @@
             button.addEventListener('click', () => {
                 let id = button.dataset.id;
                 let modal = document.getElementById("myModal-" + id);
-                modal.style.display = 'block';
+                document.getElementById("myModal-" + id).classList.add("active");
             });
         });
 
@@ -142,7 +153,7 @@
             button.addEventListener('click', () => {
                 let id = button.dataset.id;
                 let modal = document.getElementById("myModal-" + id);
-                modal.style.display = 'none';
+                document.getElementById("myModal-" + id).classList.remove("active");
             });
 
 

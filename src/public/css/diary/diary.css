@@ -9,7 +9,7 @@
 }
 
 .diary__content{
-    text-align: center;
+    margin-left: 20px;
 }
 
 .diary__items{
@@ -52,29 +52,129 @@ svg.w-5.h-5 {
     height: 30px;
 }
 
+.modal__body{
+    display: flex;
+    justify-content: center;
+    /* 水平方向の中央 */
+    align-items: center;
+    /* 垂直方向の中央 */
+}
+
 .modal {
-    display: none;
-    /* 最初は非表示 */
+    display: flex;
     position: fixed;
     z-index: 999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
+    position: absolute;
+        /* 親要素内で配置 */
+        top: 100px;
+        left: 30%;
+        transform: translateX(-30%) scale(0.8);
     background-color: #b7b6b6;
+    box-shadow: 5px 5px 3px #00000036;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+        /* 初期は透明 */
+        transform: scale(0.8);
+        /* 初期は少し小さい */
+        pointer-events: none;
+        /* クリックできない */
+        transition: opacity 0.3s ease, transform 0.3s ease;
+
 
 }
 
-.modal-content {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
+.modal.active {
+    opacity: 1;
+    /* フェードイン */
+    transform: scale(1);
+    /* 元の大きさ */
+    pointer-events: auto;
+    /* クリック可能 */
+}
+
+.button-close{
+    margin-top: 5px;
+    margin-left: 5px;
+    border: none;
+    font-family: "Kranky", serif;
+    font-weight: bold;
+    font-size: large;
+    background-color: #e3e6d2;
+    border-radius: 5px;
+
+}
+
+.modal__content{
+    margin-left: 10px;
+    margin-right: 10px;
+    max-width: 710px;
+    max-height: 80vh;
+    overflow: auto;
+}
+
+.modal__content__label{
+    font-weight: bold;
+}
+
+.modal__content__title, .modal__content__content{
+    margin-top: 0;
+}
+
+.input__modal__content{
+    width: 595px;
+    margin-left: 5px;
+    margin-right: 10px;
 }
 
 .button-open{
     text-decoration: none;
     padding-top: 20px;
+}
+
+.update__items, .create__items{
+    display: flex;
+    margin-top: 60px;
+}
+
+.update__title, .create__title{
+    margin-left: 50px;
+}
+
+.input__title{
+    width: 427px;
+}
+
+.update__content, .create__content{
+    display: flex;
+    margin-top: 20px;
+}
+
+.input__content{
+    width: 595px;
+    margin-left: 5px;
+}
+
+.update__button, .create__button {
+    width: 603px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    margin-left: 55px;
+    background-color: #e3e6d2;
+    border: #B2B3A7 1px solid;
+    font-family: "Kranky", serif;
+    font-weight: bold;
+    color:black;
+    border-radius: 5px;
+}
+
+.delete_button__area{
+    text-align: right;
+}
+
+.delete__button{
+    border: none;
+    background-color: transparent;
+
 }
